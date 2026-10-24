@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Shopping Store</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f1f3f6;
+}
+
+header {
+  background: #2874f0;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
+
+.search {
+  width: 90%;
+  max-width: 500px;
+  padding: 12px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.cart {
+  background: #ffe500;
+  color: #222;
+  padding: 10px;
+  margin-top: 10px;
+  display: inline-block;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.banner {
+  background: white;
+  margin: 12px;
+  padding: 22px 10px;
+  text-align: center;
+  color: #2874f0;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 12px;
+}
+
+.card {
+  background: white;
+  padding: 12px;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.photo {
+  font-size: 65px;
+  padding: 12px;
+}
+
+.price {
+  font-weight: bold;
+  color: #168038;
+}
+
+button {
+  background: #fb641b;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  cursor: pointer;
+}
+
+footer {
+  text-align: center;
+  background: #172337;
+  color: white;
+  padding: 18px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2>🛒 My Shopping Store</h2>
+  <input class="search" id="search"
+    placeholder="प्रोडक्ट खोजें..."
+    oninput="searchProducts()">
+  <div class="cart">
+    🛍️ Cart: <span id="count">0</span>
+    | कुल: ₹<span id="total">0</span>
+  </div>
+</header>
+
+<div class="banner">
+  <h2>Big Shopping Days!</h2>
+  <p>आपकी पसंद, आपकी Shopping!</p>
+</div>
+
+<div class="products" id="products">
+
+  <div class="card" data-name="Mobile">
+    <div class="photo">📱</div>
+    <h3>Smartphone</h3>
+    <p class="price">₹9,999</p>
+    <button onclick="add(9999)">Add to Cart</button>
+  </div>
+
+  <div class="card" data-name="Laptop">
+    <div class="photo">💻</div>
+    <h3>Laptop</h3>
+    <p class="price">₹39,999</p>
+    <button onclick="add(39999)">Add to Cart</button>
+  </div>
+
+  <div class="card" data-name="Headphones">
+    <div class="photo">🎧</div>
+    <h3>Headphones</h3>
+    <p class="price">₹999</p>
+    <button onclick="add(999)">Add to Cart</button>
+  </div>
+
+  <div class="card" data-name="Watch">
+    <div class="photo">⌚</div>
+    <h3>Smart Watch</h3>
+    <p class="price">₹1,499</p>
+    <button onclick="add(1499)">Add to Cart</button>
+  </div>
+
+  <div class="card" data-name="Shoes">
+    <div class="photo">👟</div>
+    <h3>Shoes</h3>
+    <p class="price">₹1,299</p>
+    <button onclick="add(1299)">Add to Cart</button>
+  </div>
+
+  <div class="card" data-name="Tshirt">
+    <div class="photo">👕</div>
+    <h3>T-Shirt</h3>
+    <p class="price">₹499</p>
+    <button onclick="add(499)">Add to Cart</button>
+  </div>
+
+</div>
+
+<footer>
+  <p>My Shopping Store</p>
+  <p>Thank you for shopping!</p>
+</footer>
+
+<script>
+let count = 0;
+let total = 0;
+
+function add(price) {
+  count++;
+  total += price;
+
+  document.getElementById("count").textContent = count;
+  document.getElementById("total").textContent = total;
+}
+
+function searchProducts() {
+  const query = document.getElementById("search")
+    .value.toLowerCase();
+
+  document.querySelectorAll(".card").forEach(card => {
+    card.style.display =
+      card.dataset.name.toLowerCase().includes(query)
+      ? ""
+      : "none";
+  });
+}
+</script>
+
+</body>
+  </html>
